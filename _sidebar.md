@@ -29,11 +29,11 @@
   * [04、docker常用命令](docker/docker命令.md)
   * [05、docker入门配置](docker/docker入门.md)
 * vue example
-  * [01、vue部署教程](debian/vue.md)
-  * [02、vue基础篇](debian/vue-2.md)  
-  * [03、vue组件篇](debian/vue-3.md)
-  * [04、vue路由篇](debian/vue-4.md)
-  * [05、vue的ElementPlus 组件库](debian/vue-5.md)
+  * [01、vue部署教程](vue/vue.md)
+  * [02、vue基础篇](vue/vue-2.md)  
+  * [03、vue组件篇](vue/vue-3.md)
+  * [04、vue路由篇](vue/vue-4.md)
+  * [05、vue的ElementPlus 组件库](vue/vue-5.md)
 * tool
   * [01、gopass部署教程](tool/tool.md)
 * Android
