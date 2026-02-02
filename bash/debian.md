@@ -175,9 +175,16 @@
 > ```text
 > ```
 
-
-
-
+浏览器夜间插件
+[dark-background-light-text](https://addons.mozilla.org/firefox/addon/dark-background-light-text/)
+> ```text
+> #ffffff
+> #241f31
+> #deddda
+> #9a9996
+> #ff0000
+> #8080ff
+> ```
 
 > ## 修复vlc打不开
 > ### 重置配置和插件缓存（持久修复）

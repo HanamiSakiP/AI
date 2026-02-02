@@ -34,7 +34,7 @@
   * [03、vue组件篇](vue/vue-3.md)
   * [04、vue路由篇](vue/vue-4.md)
   * [05、vue的ElementPlus 组件库](vue/vue-5.md)
-* tool
-  * [01、gopass部署教程](tool/tool.md)
+* network
+    * [01、华为ensp教程](network/ensp.md)
 * Android
   * [01、Android](android/and.md)

@@ -5,8 +5,9 @@
 <summary>114514（点击展开）</summary>
 /// [demo]
 ### [demo]
-</details>
+
+来听歌
 
 [filename](./img/1-happylife.mp4 ':include')
 
-[gmd](./AI-code/README.md ':include :type=code')
+</details>

@@ -6,7 +6,7 @@
 > apt install -y mariadb-server redis-server
 > redis-server /etc/redis/redis.conf --daemonize no
 > redis-cli ping
-> service start mariadb
+> service mariadb start
 > mysql -u root -p
 > ```
 > ### 2. 配置mysql
