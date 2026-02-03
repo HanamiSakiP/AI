@@ -39,7 +39,7 @@
   * [4. vue路由篇](vue/vue-4.md)
   * [5. vue的ElementPlus 组件库](vue/vue-5.md)
 * network
-  * [1. 华为ensp教程](network/ensp.md)
+  * [1. cisco-ensp](network/ensp.md)
   * [2. Wireshark](network/Wireshark.md)
   * [2. 逆向app](network/2.md)
   * [3. 信息收集](network/3.md)
@@ -50,5 +50,15 @@
   * [8. 密码攻击](network/8.md) 
   * [8. 无线攻击](network/88.md) 
   * [9. 嗅探](network/9.md) 
+* internet
+  * [1. Computer](internet/Computer.md)
+  * [2. windows](internet/windows.md)
+  * [3. Visio-CAD](internet/CAD.md)
+  * [4. C语言](internet/C.md)
+  * [5. 数据结构](internet/数据结构.md)
+  * [6. 计算机操作系统](internet/计算机操作系统.md)
+  * [7. 计算机网络](internet/计算机网络.md)
+  * [8. 算法](internet/算法.md)
+  * [9. 密码学](internet/密码学.md)
 * Android
   * [1. Android](android/and.md)
