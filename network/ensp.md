@@ -35,6 +35,20 @@
 
 </details>
 
+### 防火墙配置
+<details>
+<summary>端口配置 和 动态路由协议（点击展开）</summary>
+
+```bash
+# nat
+```
+
+白嫖禁止
+
+[![](../../img/95750227_p0.png)](/show?code=AI-code.git "关注塔菲喵")
+
+</details>
+
 ### Linux 服务器配置
 <details>
 <summary>文件传输协议（点击展开）</summary>

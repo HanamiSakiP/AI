@@ -186,6 +186,9 @@
 > #8080ff
 > ```
 
+
+https://docs.nvidia.com/cuda/cuda-installation-guide-linux/
+
 > ## 修复vlc打不开
 > ### 重置配置和插件缓存（持久修复）
 > ```bash

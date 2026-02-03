@@ -1,6 +1,5 @@
 <!-- _sidebar.md -->
 
- <!--注意括号里是相对路径-->
 * AI-adk
   * [1. adk_agent](AI/adk_agent/adk_agnet.md)
   * [2. adk_MAS](AI/adk_agent/adk-MAS.md)
@@ -22,19 +21,34 @@
   * [4. WebDAV](bash/webdav.md)
   * [5. go-gin-grom](bash/go-2.md)
   * [6. mysql-redis](bash/MariaDB.md)
+  * [7. RPC-gRPC](bash/RPC.md)
+  * [8. ParrotOS](bash/ParrotOS.md)
+  * [9. Qubes-OS](bash/Qubes-OS.md)
 * docker
-  * [01、debian及docker常用命令](docker/debian_docker.md)
-  * [02、docker储存空间转移](docker/docker磁盘空间不足解决办法.md)
-  * [03、docker compose命令](docker/docker%20compose命令.md)
-  * [04、docker常用命令](docker/docker命令.md)
-  * [05、docker入门配置](docker/docker入门.md)
-* vue example
-  * [01、vue部署教程](vue/vue.md)
-  * [02、vue基础篇](vue/vue-2.md)  
-  * [03、vue组件篇](vue/vue-3.md)
-  * [04、vue路由篇](vue/vue-4.md)
-  * [05、vue的ElementPlus 组件库](vue/vue-5.md)
+  * [1. debian及docker常用命令](docker/debian_docker.md)
+  * [2. docker储存空间转移](docker/docker磁盘空间不足解决办法.md)
+  * [3. docker compose命令](docker/docker%20compose命令.md)
+  * [4. docker常用命令](docker/docker命令.md)
+  * [5. docker入门配置](docker/docker入门.md)
+  * [6. Dockerfile编写](docker/Dockerfile.md)
+  * [7. K8S使用](docker/K8S.md)
+* vue
+  * [1. vue部署教程](vue/vue.md)
+  * [2. vue基础篇](vue/vue-2.md)  
+  * [3. vue组件篇](vue/vue-3.md)
+  * [4. vue路由篇](vue/vue-4.md)
+  * [5. vue的ElementPlus 组件库](vue/vue-5.md)
 * network
-    * [01、华为ensp教程](network/ensp.md)
+  * [1. 华为ensp教程](network/ensp.md)
+  * [2. Wireshark](network/Wireshark.md)
+  * [2. 逆向app](network/2.md)
+  * [3. 信息收集](network/3.md)
+  * [4. 漏洞分析](network/4.md)
+  * [5. web程序](network/5.md)
+  * [6. 漏洞利用工具](network/6.md)
+  * [7. 权限维持](network/7.md)
+  * [8. 密码攻击](network/8.md) 
+  * [8. 无线攻击](network/88.md) 
+  * [9. 嗅探](network/9.md) 
 * Android
-  * [01、Android](android/and.md)
+  * [1. Android](android/and.md)
