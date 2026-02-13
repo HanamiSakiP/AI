@@ -1,0 +1,6 @@
+sys
+int loo1
+ip add 12.12.12.12 24
+return
+save
+y

@@ -30,6 +30,7 @@
 > ### go_tool
 > ```bash
 > 
+> go install filippo.io/age/cmd/...@latest
 > go install github.com/junegunn/fzf@latest
 > go install github.com/rclone/rclone@latest
 > go install github.com/maaslalani/nap@main
@@ -54,6 +55,26 @@
 > go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
 > env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
 > ```
+
+<details>
+<summary>tool</summary>
+
+```bash
+# 密钥生成
+age-keygen -o key.txt
+
+# 密钥解密
+age -d -i key.txt -o 还原后的文件  加密的文件
+# 密钥加密
+age -p -i key.txt -o 加密后的文件  加密前的文件
+
+# 加密
+age -p -o secret.age secret.txt
+# 解密
+age -d  -o secret.txt secret.age
+```
+
+</details>
 
 ## pip
 > ### pip_com

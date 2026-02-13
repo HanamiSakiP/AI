@@ -1,0 +1,12 @@
+system-view 
+un in en
+sysname SW1
+interface  vlanif  1                    
+    ip  address  192.168.19.10   24   
+    q                              
+user-interface  vty  0  4               
+    authentication-mode  aaa    
+    q                            
+aaa                               
+    local-user   admin   password  cipher    123456    privilege  level 3
+    local-user admin service-type telnet 

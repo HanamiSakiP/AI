@@ -1,0 +1,11 @@
+sys
+vlan 10
+des caiwubu
+ vlan 20
+des yewubu
+ vlan 30
+ des xinxibu
+return
+save
+y
+display vlan

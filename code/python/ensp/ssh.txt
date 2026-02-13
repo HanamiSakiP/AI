@@ -1,0 +1,14 @@
+sys
+sysname SW1
+un in en
+stelnet server enable
+ssh  user  admin  authentication-type  password 
+ssh  user  admin  service-type  stelnet
+aaa
+    local-user admin password cipher 123456   privilege level 3
+    local-user admin service-type ssh
+interface Vlanif1
+    ip address 192.168.19.10 255.255.255.0
+user-interface vty 0 4
+    authentication-mode aaa
+    protocol inbound ssh
