@@ -16,6 +16,40 @@
 <summary>基础知识2</summary>
 
 ```bash
+# 1. 配置java环境(Spring Boot)
+
+# windows环境配置
+# 新建 JAVA_HOME
+JAVA_HOME
+# 路径
+C:\Program Files\Java\jdk-17
+
+# Path 配置
+%JAVA_HOME%\bin
+%JAVA_HOME%\jre\bin
+
+# 确认是否配置成功
+java -version
+javac -version
+
+# 2. 配置Maven环境(Spring Boot)
+# 新建 MAVEN_HOME
+MAVEN_HOME
+# 路径
+C:\apache-maven-3.9.11
+# Path 配置
+%MAVEN_HOME%\bin
+
+# 确认是否配置成功
+mvn -v
+
+
+# 配置Nodejs环境(frontend)
+# 配置 数据库 环境 (如:mysql,redis)
+# 配置go环境
+```
+
+```bash
 # Spring Boot-js_vue结构
 demo/
 ├── frontend/  # 前端
@@ -47,6 +81,11 @@ demo/
 ```
 
 ```bash
+# Spring Boot
+entity -> mapper 
+entity -> service --> impl
+common,config,utils -> controller
+
 # 前端依赖下载
 npm install
 # 前端启动
@@ -58,6 +97,30 @@ mvn spring-boot:run
 ```
 
 ```bash
+# go-gin-grom
+demo/
+├── backend/  # 后端
+│   └── config/  # 配置
+│   └── controller/  # 控制器
+│   └── initialize/  # 数据库初始数据
+│   └── middlewares/  # 中间件
+│   └── models/  # 模型
+│   └── router/  # 路由
+│   └── util/  # 工具
+└── main.go  # go程序的入口
+└── go.mod  # Go Modules 的核心配置文件
+└── go.sum  # go依赖
+└── README.md  # 项目说明文档
+```
+
+
+
+```bash
+# go-gin-grom
+models -> controller,initialize
+config,util,middlewares -> controller
+controller -> router
+
 # go依赖下载
 go mod tidy
 # go后端启动
