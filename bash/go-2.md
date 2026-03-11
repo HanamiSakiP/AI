@@ -61,6 +61,7 @@ demo/
 │   │    └── views/  # 主要页面
 │   │    └── App.vue  # 主入口
 │   │    └── main.js  # 导入配置
+│   │    └── request.js  # 拦截器
 │   └── vite.config.js  # 配置文件
 │   └── package.json  # 导入包信息
 │   └── node_modules/  # 前端依赖
@@ -99,6 +100,19 @@ mvn spring-boot:run
 ```bash
 # go-gin-grom
 demo/
+├── frontend/  # 前端
+│   └── src/
+│   │    ├── api/
+│   │    ├── components/  # 公共页面
+│   │    └── router/  # 路由
+│   │    └── stores/  # 状态
+│   │    └── views/  # 主要页面
+│   │    └── App.vue  # 主入口
+│   │    └── main.js  # 导入配置
+│   │    └── request.js  # 拦截器
+│   └── vite.config.js  # 配置文件
+│   └── package.json  # 导入包信息
+│   └── node_modules/  # 前端依赖
 ├── backend/  # 后端
 │   └── config/  # 配置
 │   └── controller/  # 控制器
@@ -116,10 +130,28 @@ demo/
 
 
 ```bash
-# go-gin-grom
+# vue(frontend)
+# axios
+request.js -> api
+stores -> router
+stores/user.js -> Login.vue,Register.vue,router.js
+--> user.vue,admin.vue(角色区分导航栏)
+api -> test.vue
+main.js -> App.vue -> router.js -> test.vue
+
+
+# go-gin-grom(backend)
 models -> controller,initialize
 config,util,middlewares -> controller
 controller -> router
+
+
+# frontend -> backend
+vite.config.js,request.js -> router(backend)
+api -> controller
+# backend -> databases
+config -> databases
+
 
 # go依赖下载
 go mod tidy
