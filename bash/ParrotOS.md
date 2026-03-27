@@ -81,7 +81,10 @@ cp path/bg.jpg  .
 <details>
 <summary>系统更新</summary>
 
-下载重装
+```bash
+parrot-upgrade
+# parrot-updater
+```
 
 </details>
 
@@ -98,19 +101,12 @@ lspci | grep -i amd
 # 如果输出为空，说明使用默认开源驱动。
 lsmod | grep -i nvidia  # NVIDIA
 lsmod | grep -i amdgpu # AMD
-# 1.3. 更新软件源： 编辑 /etc/apt/sources.list 文件
-sudo nano /etc/apt/sources.list
 ```
-* 确保你的源包含 main contrib non-free non-free-firmware，例如
-```lsit
-deb http://deb.parrotsec.org/parrot rolling main contrib non-free non-free-firmware
-deb http://deb.parrotsec.org/parrot rolling-security main contrib non-free non-free-firmware
-```
-* 保存后，运行
+
 ```bash
-# 1.4. 更新系统内核和依赖
-sudo apt update && sudo apt full-upgrade -y
-# 1.5. 通用依赖
+# 1.3. 更新系统
+sudo apt update
+# 1.4. 通用依赖
 # build-essential：编译工具。
 # dkms：动态内核模块支持，确保驱动在内核更新后存活。
 # linux-headers：匹配当前内核。
@@ -132,28 +128,25 @@ sudo apt install build-essential dkms linux-headers-$(uname -r) firmware-misc-no
 
 ### 2. NVIDIA 显卡驱动安装实战操作
 ```bash
-# 2.1 检测并选择驱动版本
-sudo apt install nvidia-detect
-sudo nvidia-detect
-# 2.2 安装驱动
+# 2.1 安装驱动
 # 步骤1：卸载旧驱动（如果有）：
 sudo apt purge nvidia* libnvidia*  # 清除所有 NVIDIA 相关
 sudo apt autoremove
-步骤2：安装推荐驱动
+# 步骤2：安装推荐驱动
 sudo apt install nvidia-driver
 # 或指定版本（如 535）：
 # sudo apt install nvidia-driver-535
-
-# 步骤3：安装 CUDA 工具包（可选，用于 GPU 计算，如 Hashcat）：
-sudo apt install nvidia-cuda-toolkit
-# 验证
-nvcc --version
-# 步骤4：配置 Xorg（如果黑屏）： 编辑 /etc/X11/xorg.conf（备份原文件）：
-# sudo cp /etc/X11/xorg.conf /etc/X11/xorg.conf.bak
-# sudo nvidia-xconfig  # 自动生成配置
-# 如果无 xorg.conf，运行：
-# sudo nvidia-xconfig --enable-all-gpus --connected-monitors
-# 步骤5：重启并验证：
+# 步骤3：禁用开源驱动
+sudo nano /etc/modprobe.d/blacklist-nouveau.conf
+```
+```
+blacklist nouveau
+options nouveau modeset=0
+alias nouveau off
+```
+```bash
+sudo update-initramfs -u
+# 步骤4：重启并验证：
 # sudo reboot
 # 重启后，运行
 nvidia-smi  # 显示 GPU 状态、温度、驱动版本
@@ -179,17 +172,50 @@ nvidia-smi
 <details>
 <summary>常见问题解决</summary>
 
-问题1：安装后黑屏或无法进入图形界面。
-* 原因：Nouveau 未禁用。
-* 解决：编辑 /etc/modprobe.d/blacklist-nouveau.conf：
-添加：
+```bash
+# grub
+sudo nano /etc/default/grub
+# GRUB_CMDLINE_LINUX_DEFAULT='quiet splash nvidia-drm.modeset=1 nouveau.modeset=0'
+sudo update-grub
 ```
-blacklist nouveau
-options nouveau modeset=0
+
+```bash
+# Error! Bad return status for module build on kernel: 6.19.6+parrot7-amd64 (x86_64)
+# 查看内核(ParrotOS7.1更新后双内核问题)
+uname -r
+ls /lib/modules
+# ls /lib/modules/6.19.6+parrot7-amd64
+# 1. 删除 6.19 内核模块目录
+sudo rm -rf /lib/modules/6.19.6+parrot7-amd64
+sudo apt remove --purge linux-image-6.19.6+parrot7-amd64 linux-image-amd64
+sudo apt autoremove
+# 2. 清理 DKMS 中所有 NVIDIA 相关记录
+sudo dkms remove nvidia-current/550.163.01 --all
+sudo rm -rf /var/lib/dkms/nvidia-current
+sudo rm -rf /usr/src/nvidia-*
+# 3. 重新安装当前内核头文件（确保完整）
+sudo apt install --reinstall linux-headers-$(uname -r)
+# 4. 彻底清除 NVIDIA 包并重装
+sudo apt purge nvidia-* bumblebee-*
+sudo apt autoremove --purge
+sudo apt update
+sudo apt install nvidia-driver
+# 安装大黄蜂(双显卡)
+sudo apt install bumblebee-nvidia primus-nvidia primus-vk-nvidia nvidia-smi -y
+# sudo apt install nvidia-cuda-dev nvidia-cuda-toolkit
+sudo nano /etc/bumblebee/bumblebee.conf
 ```
 ```bash
-sudo update-initramfs -u
-# 重启
+# 大黄蜂N卡设置
+# 1
+# (See also the driver-specific sections below)
+Driver=nvidia # 此处修改
+# 2
+[driver-nvidia]
+# Module name to load, defaults to Driver if empty or unset
+KernelDriver=nvidia-current # 此处修改
+```
+```bash
 # 问题2：DKMS 编译失败（内核不匹配）。
 # 解决：确保 headers 安装正确：sudo apt install linux-headers-$(uname -r)。然后：
 sudo dkms autoinstall
@@ -200,11 +226,6 @@ sudo dkms autoinstall
 # 性能优化：启用 Coolbits 以超频（风险高）： 在 xorg.conf 的 Device 部分添加：
 # Option "Coolbits" "8"
 # 重启后用 nvidia-settings 调整。
-# 如果你的 NVIDIA 卡是 Optimus（笔记本混合显卡），需安装 nvidia-prime 并配置 PRIME 切换：
-sudo apt install nvidia-prime
-prime-select nvidia  # 切换到 NVIDIA
-# 重启验证
-prime-select query
 ```
 
 </details>
@@ -227,30 +248,17 @@ flatpak run com.valvesoftware.Steam
 
 添加镜像Flathub仓库
 ```bash
-sudo flatpak remote-modify flathub --url=镜像
+sudo flatpak remote-modify flathub --url=国内镜像
 ```
 
 </details>
 
+<details>
+<summary>onlyoffice</summary>
 
-## 3. Ollama安装与命令
+办公office
 ```bash
-# 一键安装
-# curl -fsSL https://ollama.com/install.sh | sh
-# 安装ollama.tar.zst
-# curl -fsSL https://ollama.com/download/ollama-linux-amd64.tar.zst
-sudo tar --zstd -xf /home/user/ollama-linux-amd64.tar.zst -C /usr
-# 查看版本
-ollama -v
-# 开启服务
-ollama server
-# 查询服务是否启动
-curl 127.0.0.1:11434 # 成功返回 Ollama is running
-# 查看已下载模型
-ollama list
-# 下载模型
-ollama pull qwen3.5:0.8b
-# 使用模型(无则会进行下载)
-ollama run qwen3.5:0.8b
+sudo flatpak install flathub org.onlyoffice.desktopeditors
 ```
 
+</details>
