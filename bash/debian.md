@@ -245,9 +245,37 @@ rm -rf .git/modules/GWToolkit
 ```bash
 # 一键安装
 # curl -fsSL https://ollama.com/install.sh | sh
-# 安装ollama.tar.zst
+# 手动安装ollama.tar.zst
 # curl -fsSL https://ollama.com/download/ollama-linux-amd64.tar.zst
 sudo tar --zstd -xf /home/user/ollama-linux-amd64.tar.zst -C /usr
+# 设置
+sudo useradd -r -s /bin/false -U -m -d /usr/share/ollama ollama
+sudo usermod -a -G ollama $(whoami)
+sudo nano /etc/systemd/system/ollama.service
+```
+```ollama.service
+[Unit]
+Description=Ollama Service
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/ollama serve
+User=ollama
+Group=ollama
+Restart=always
+RestartSec=3
+Environment="PATH=$PATH"
+
+[Install]
+WantedBy=multi-user.target
+```
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable ollama
+sudo systemctl start ollama
+sudo systemctl status ollama
+```
+```bash
 # 查看版本
 ollama -v
 # 开启服务
