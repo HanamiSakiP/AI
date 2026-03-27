@@ -32,6 +32,7 @@ gh repo list --limit 10 --json nameWithOwner --jq '.[].nameWithOwner' | xargs -L
 git status
 git add . && git commit -m "test"
 git push
+git log
 ```
 
 更新说明
