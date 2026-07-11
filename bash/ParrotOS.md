@@ -20,6 +20,27 @@ sha512sum Parrot-security-7.1_amd64.iso
 
 </details>
 
+<details>
+<summary>校验拓展</summary>
+
+```bash
+# 批量生成校验
+md5sum *.7z *.rar > MD5SUMS
+sha256sum *.7z *.rar > SHA256SUMS
+sha512sum *.7z *.rar > SHA512SUMS
+# 批量对比校验
+md5sum -c MD5SUMS
+sha256sum -c SHA256SUMS
+sha512sum -c SHA512SUMS
+# 单个对比校验
+grep -F "clover-days-r18-patch.zip" SHA256SUMS | sha256sum -c
+# 追加生成校验
+md5sum *.zip >> MD5SUMS
+sha256sum *.zip >> SHA256SUMS
+sha512sum *.zip >> SHA512SUMS
+```
+
+</details>
 
 ### 安装系统
 <details>
