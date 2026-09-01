@@ -96,7 +96,18 @@
 | 常规脱离凸 | <img src="./img/M.jpg" width="100"> | `9288d158da89ac86cfda3a868669e20b` | [steam](https://store.steampowered.com/app/) |
 | hamidashitotsu.pfs.005 |
 | 常规脱离凸 | <img src="./img/M.jpg" width="100"> | `33fd34af42b707b4b93fb3a6e571043f` | [steam](https://store.steampowered.com/app/) |
-
+| Kimagure Temptation_Adult DLC.zip |
+| 异想魅惑 | <img src="./img/M.jpg" width="100"> | `d2411531bba555d016ca136d2b765282` | [steam](https://store.steampowered.com/app/) |
+| 与我恋爱的废柴小恶魔 Fan Disc - 18+ Adult DLC.part1.exe |
+| 与我恋爱的废柴小恶魔FD | <img src="./img/M.jpg" width="100"> | `d4e964201f3fc744f6766e0bcca17999` | [steam](https://store.steampowered.com/app/) |
+| 与我恋爱的废柴小恶魔 - 18+ Adult DLC.part2.rar |
+| 与我恋爱的废柴小恶魔FD | <img src="./img/M.jpg" width="100"> | `cd8bbd02cb4ef466c2bc337350dc6d21` | [steam](https://store.steampowered.com/app/) |
+| 与我恋爱的废柴小恶魔 - 18+ Adult DLC.part3.rar |
+| 与我恋爱的废柴小恶魔FD | <img src="./img/M.jpg" width="100"> | `659f349e9667a709056e994c8838ea47` | [steam](https://store.steampowered.com/app/) |
+| 与我恋爱的废柴小恶魔 - 18+ Adult DLC.part4.rar |
+| 与我恋爱的废柴小恶魔FD | <img src="./img/M.jpg" width="100"> | `16d3b9956d77bc86d0f2921b5cb8a952` | [steam](https://store.steampowered.com/app/) |
+| 与我恋爱的废柴小恶魔 - 18+ Adult DLC.part5.rar |
+| 与我恋爱的废柴小恶魔FD | <img src="./img/M.jpg" width="100"> | `e4d85a289ed538e482eb1b0cbd5e00a2` | [steam](https://store.steampowered.com/app/) |
 
 
 </details>
