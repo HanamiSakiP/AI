@@ -1,6 +1,7 @@
 <!-- _sidebar.md -->
 
 * AI-adk
+  * [gal](./gal.md)
   * [1. adk_agent](AI/adk_agent/adk_agnet.md)
   * [2. adk_MAS](AI/adk_agent/adk-MAS.md)
   * [3. adk_MCP](AI/adk_agent/adk-MCP.md)
