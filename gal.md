@@ -140,7 +140,18 @@
 | 献给亲爱的你（2021.02.26） | <img src="./img/M.jpg" width="100"> | `9291ff84006e3645b598849a56214046` | [HF](https://store.hikarifield.co.jp/) |
 | kirakano_steam_patch.7z |
 | 闪亮（2025.02.14） | <img src="./img/M.jpg" width="100"> | `4de6579fba15409d0a47aad8f5bad52e` | [HF](https://store.hikarifield.co.jp/) |
-
+| yumahorome_steam_patch.7z |
+| 真愿朦幻馆（2022.08.12） | <img src="./img/M.jpg" width="100"> | `7d3af3e4c4ed48ef11d15e9aabc7a589` | [HF](https://store.hikarifield.co.jp/) |
+| arcana_alchemia_steam_patch.7z |
+| 炼爱秘仪（2023.09.22） | <img src="./img/M.jpg" width="100"> | `58b8b45f14fa274b4fb4c0da424f7498` | [HF](https://store.hikarifield.co.jp/) |
+| hello_lady_se_steam_patch.7z |
+| 淑女同萌！-SE-（2022.01.21） | <img src="./img/M.jpg" width="100"> | `2c02f6b28238bda54492ac7130665e47` | [HF](https://store.hikarifield.co.jp/) |
+| tsuki_patch_sc.7z |
+| 月影魅像（2019.7.26） | <img src="./img/M.jpg" width="100"> | `9ad9ad5c491c15baa08a0f0dd91b71f9` | [HF](https://store.hikarifield.co.jp/) |
+| hananono_patch_101.7z |
+| 五色浮影（2022.04.23） | <img src="./img/M.jpg" width="100"> | `312c3c971123e2086a99d6170b5fbe76` | [HF](https://store.hikarifield.co.jp/) |
+| cross_concerto_steam_patch.7z |
+| 交汇协奏曲（2022.09.23） | <img src="./img/M.jpg" width="100"> | `f17d5f2983c3abe125fe1519c95405a3` | [HF](https://store.hikarifield.co.jp/) |
 
 </details>
 
