@@ -122,6 +122,25 @@
 | 近月少女的礼仪2（2025.08.18） | <img src="./img/M.jpg" width="100"> | `7cf9fefbd7f03eb36c1114efb79011b8` | [HF](https://store.hikarifield.co.jp/) |
 | seikano_extended_contents.7z |
 | 制服 | <img src="./img/M.jpg" width="100"> | `54b63a3ad3a29e59066e5a392491a55f` | [HF](https://store.hikarifield.co.jp/) |
+| parfait_extended_contents.7z |
+| 纯爱咖啡厅～帕露菲重制版～ | <img src="./img/M.jpg" width="100"> | `cd992848daf62ce2bf1d379a500bb46f` | [HF](https://store.hikarifield.co.jp/) |
+| hitme_extended_contents.7z |
+| 你的眼眸命中我心头 | <img src="./img/M.jpg" width="100"> | `39f9a86c44072d2bf09ae5543b4d7eb0` | [HF](https://store.hikarifield.co.jp/) |
+| aozora_extended_contents.7z |
+| 青空下的约定--Refine | <img src="./img/M.jpg" width="100"> | `7c60b6e8a6e1f632da272efbf2e7e942` | [HF](https://store.hikarifield.co.jp/) |
+| Aonatsu_Line_patch.7z |
+| 青夏轨迹（2022.12.10） | <img src="./img/M.jpg" width="100"> | `1cfbacccc5566b46eae703c41835e270` | [HF](https://store.hikarifield.co.jp/) |
+| soratoto_patch_sc.7z |
+| 天空的蓝与白夏日（2022.11.04） | <img src="./img/M.jpg" width="100"> | `def141d7c3ff87cfc57ebd54c5280bf1` | [HF](https://store.hikarifield.co.jp/) |
+| witch_garden_steam_patch.7z |
+| 魔女的花园（2023.05.10） | <img src="./img/M.jpg" width="100"> | `ba4b78f8af9a631b80111021bf6656d5` | [HF](https://store.hikarifield.co.jp/) |
+| hp2_r18_patch.7z |
+| Happiness!2樱花盛典（2020.04.24） | <img src="./img/M.jpg" width="100"> | `0e24e5f85cc9912f293991fe7f1c7452` | [HF](https://store.hikarifield.co.jp/) |
+| ReLieF_SteaM_PatcH.7z |
+| 献给亲爱的你（2021.02.26） | <img src="./img/M.jpg" width="100"> | `9291ff84006e3645b598849a56214046` | [HF](https://store.hikarifield.co.jp/) |
+| kirakano_steam_patch.7z |
+| 闪亮（2025.02.14） | <img src="./img/M.jpg" width="100"> | `4de6579fba15409d0a47aad8f5bad52e` | [HF](https://store.hikarifield.co.jp/) |
+
 
 </details>
 
