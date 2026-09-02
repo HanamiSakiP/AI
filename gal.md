@@ -28,9 +28,9 @@
 | 名称 | 封面 | MD5 | 平台 |
 | :---: | :---: | :---: | :---: |
 | 黑兽2 | <img src="./img/M.jpg" width="100"> | `79ba395b108d9b891195e80f08d0080f` | [steam](https://store.steampowered.com/app/2544760) |
-| 久那国土 | <img src="./img/127521407_p0.jpg" width="100"> | `暂无` | [steam](https://store.steampowered.com/app/1934910) |
-| 雪色暗号 | <img src="./img/127521407_p0.jpg" width="100"> | `暂无` | [steam](https://store.steampowered.com/app/2307160) |
-| 樱花裁决 | <img src="./img/127521407_p0.jpg" width="100"> | `暂无` | [steam](https://store.steampowered.com/app/1066630) |
+| 久那国土 | <img src="./img/127521407_p0.jpg" width="100"> | `6dd8d1fad8d439c1c8f9fa8d4fc173ed` | [steam](https://store.steampowered.com/app/1934910) |
+| 雪色暗号 | <img src="./img/127521407_p0.jpg" width="100"> | `71ec6a075c31532d1080ec5ac680d790` | [steam](https://store.steampowered.com/app/2307160) |
+| 樱花裁决 | <img src="./img/127521407_p0.jpg" width="100"> | `1d60b99b7debfdcb2f158894648b3162` | [steam](https://store.steampowered.com/app/1066630) |
 | 永不枯萎的世界与终焉之花 | <img src="./img/M.jpg" width="100"> | `e5795befd53298598760c7dd66289968` | [steam](https://store.steampowered.com/app/3410630) |
 | NUKITASHI | <img src="./img/M.jpg" width="100"> | `bb8a3182f7824c97a4bf4c14d4e3c696` | [steam](https://store.steampowered.com/app/2399220) |
 | NUKITASHI2 | <img src="./img/M.jpg" width="100"> | `bfb430c25628a724adbe4abffc1b1fd2` | [steam](https://store.steampowered.com/app/2614070) |
@@ -70,8 +70,58 @@
 | 星光咖啡厅与死神之蝶 | <img src="./img/M.jpg" width="100"> | `7c248d9feae603d2da1fde4cc835b7d9` | [HF](https://store.hikarifield.co.jp/) |
 | select_steam_patch.7z |
 | 天选庶民的真命之选(2024.11.08) | <img src="./img/M.jpg" width="100"> | `84d877da4d2a6e9724c77396b8a3c636` | [HF](https://store.hikarifield.co.jp/) |
-
-
+| madoki_steam_patch.7z |
+| 雪境迷途遇仙踪（2022.02.04） | <img src="./img/M.jpg" width="100"> | `ac320bfb1b002e1b333ce1fd0d2ec2b6` | [HF](https://store.hikarifield.co.jp/) |
+| sekachu_steam_patch.7z |
+| 在世界与世界的正中央（2022.02.11） | <img src="./img/M.jpg" width="100"> | `aa8728076d35188b6b7e4624871e2aa8` | [HF](https://store.hikarifield.co.jp/) |
+| magical_charming_patch.7z |
+| 魔卡魅恋（2022.05.20） | <img src="./img/M.jpg" width="100"> | `4860e5f0fbf1219c8a007099d526371f` | [HF](https://store.hikarifield.co.jp/) |
+| ms22_patch_sc.7z |
+| 樱之杜†净梦者（2019.2.1） | <img src="./img/M.jpg" width="100"> | `f927fbdf43e0d15a30a6eb515b2140fe` | [HF](https://store.hikarifield.co.jp/) |
+| ms26_patch_sc.7z |
+| 樱之杜†净梦者2（2019.3.15） | <img src="./img/M.jpg" width="100"> | `b1484b17060daedfc486e70b862fb7ed` | [HF](https://store.hikarifield.co.jp/) |
+| ms18_patch_sc.7z |
+| 追忆夏色年华（2019.12.06） | <img src="./img/M.jpg" width="100"> | `f347117a8c6196c5fb03bfa59c262fca` | [HF](https://store.hikarifield.co.jp/) |
+| ms24_patch_sc.7z |
+| 来自昏暗的时间尽头（2021.12.17） | <img src="./img/M.jpg" width="100"> | `d034523b80c6abb1c9f0a90105bf298e` | [HF](https://store.hikarifield.co.jp/) |
+| mono_patch_sc.7z |
+| 茂伸奇谈（2019-01-25） | <img src="./img/M.jpg" width="100"> | `c7ccbfee9eb6c226f2c3895fc20a7e99` | [HF](https://store.hikarifield.co.jp/) |
+| monohe_steam_patch_sc.7z |
+| 茂伸奇谈-Happy End-（2025-06-14） | <img src="./img/M.jpg" width="100"> | `d5eeaae59867361c129fd9df0cda25db` | [HF](https://store.hikarifield.co.jp/) |
+| maitetsu_lastrun_extra_patch_v1.2.7z |
+| 爱上火车 -Last Run!!-（2022.02.15） | <img src="./img/M.jpg" width="100"> | `3bb9f8011854e7df5ec84eb48f6a0348` | [HF](https://store.hikarifield.co.jp/) |
+| patch_append72.7z |
+| 爱上火车LR追加立绘 | <img src="./img/M.jpg" width="100"> | `4e20276d1ee161ceb5dbf3225327cc17` | [HF](https://store.hikarifield.co.jp/) |
+| patch_append_82_84_85_86.7z |
+| 爱上火车LR追加补丁01 | <img src="./img/M.jpg" width="100"> | `869b01c914ac86d607ad8b5d48c119e6` | [HF](https://store.hikarifield.co.jp/) |
+| patch_append_88.7z |
+| 爱上火车LR追加补丁02 | <img src="./img/M.jpg" width="100"> | `e93cb1ce42f2ff692183beadfdccb52f` | [HF](https://store.hikarifield.co.jp/) |
+| patch_append_92.7z |
+| 爱上火车LR追加补丁03 | <img src="./img/M.jpg" width="100"> | `4b70a5066508af5eddf1f1f9007e2e68` | [HF](https://store.hikarifield.co.jp/) |
+| patch_sc.7z |
+| 淑女同萌 | <img src="./img/M.jpg" width="100"> | `32081a499f54a4b209db7b22e0323c45` | [HF](https://store.hikarifield.co.jp/) |
+| hello_lady_nd_patch.7z |
+| 淑女同萌-New Division- | <img src="./img/M.jpg" width="100"> | `f8eb50d2291d4a5ae61b06f3ab2a5682` | [HF](https://store.hikarifield.co.jp/) |
+| tenshisouzou_patch.7z |
+| 天使☆嚣嚣 RE-BOOT!（2025.01.24） | <img src="./img/M.jpg" width="100"> | `047da16d23fa1f4f5bef282b42f0f67c` | [HF](https://store.hikarifield.co.jp/) |
+| koikake_steam_patch.7z |
+| 想要传达给你的爱恋（2023.08.06） | <img src="./img/M.jpg" width="100"> | `104c971ca24ddcbd73da8e717d34e56b` | [HF](https://store.hikarifield.co.jp/) |
+| ML_Steam_Patch.7z |
+| 突然*恋人（2024.05.03） | <img src="./img/M.jpg" width="100"> | `2e6b9c8c8b89c769924c60ea41c9fc3e` | [HF](https://store.hikarifield.co.jp/) |
+| ML_Steam_Patch_update240503.7z |
+| 突然*恋人增益更新补丁 | <img src="./img/M.jpg" width="100"> | `a0f9d7f425958b00a2c0fe48c666233a` | [HF](https://store.hikarifield.co.jp/) |
+| tsuki_steam_patch.7z |
+| 近月少女的礼仪（2022.06.19） | <img src="./img/M.jpg" width="100"> | `ed385a3b8fae504dfc71ab4404f3bf76` | [HF](https://store.hikarifield.co.jp/) |
+| shuffle_ep2_steam_patch_cn.7z |
+| 被神与魔同时盯上的男人（2023.03.10） | <img src="./img/M.jpg" width="100"> | `89c57493d995117d8f3bd6cb15f78be3` | [HF](https://store.hikarifield.co.jp/) |
+| otomeriron_steam_patch.7z |
+| 少女理论及其周边（2024.03.12） | <img src="./img/M.jpg" width="100"> | `74a17b1c23aeea67bec09adf369a945c` | [HF](https://store.hikarifield.co.jp/) |
+| sorechiru_steam_patch.7z |
+| 繁花落舞恋如樱-Re:BIRTH-（2024.06.07） | <img src="./img/M.jpg" width="100"> | `03a148e96eef77fa5c547982790c0cce` | [HF](https://store.hikarifield.co.jp/) |
+| Tsuriotsu2_steam_patch.7z |
+| 近月少女的礼仪2（2025.08.18） | <img src="./img/M.jpg" width="100"> | `7cf9fefbd7f03eb36c1114efb79011b8` | [HF](https://store.hikarifield.co.jp/) |
+| seikano_extended_contents.7z |
+| 制服 | <img src="./img/M.jpg" width="100"> | `54b63a3ad3a29e59066e5a392491a55f` | [HF](https://store.hikarifield.co.jp/) |
 
 </details>
 
