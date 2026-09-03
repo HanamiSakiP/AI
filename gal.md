@@ -28,9 +28,9 @@
 | 名称 | 封面 | MD5 | 平台 |
 | :---: | :---: | :---: | :---: |
 | 黑兽2 | <img src="./img/M.jpg" width="100"> | `79ba395b108d9b891195e80f08d0080f` | [steam](https://store.steampowered.com/app/2544760) |
-| 久那国土 | <img src="./img/127521407_p0.jpg" width="100"> | `6dd8d1fad8d439c1c8f9fa8d4fc173ed` | [steam](https://store.steampowered.com/app/1934910) |
-| 雪色暗号 | <img src="./img/127521407_p0.jpg" width="100"> | `71ec6a075c31532d1080ec5ac680d790` | [steam](https://store.steampowered.com/app/2307160) |
-| 樱花裁决 | <img src="./img/127521407_p0.jpg" width="100"> | `1d60b99b7debfdcb2f158894648b3162` | [steam](https://store.steampowered.com/app/1066630) |
+| 久那国土 | <img src="./img/M.jpg" width="100"> | `6dd8d1fad8d439c1c8f9fa8d4fc173ed` | [steam](https://store.steampowered.com/app/1934910) |
+| 雪色暗号 | <img src="./img/M.jpg" width="100"> | `71ec6a075c31532d1080ec5ac680d790` | [steam](https://store.steampowered.com/app/2307160) |
+| 樱花裁决 | <img src="./img/M.jpg" width="100"> | `1d60b99b7debfdcb2f158894648b3162` | [steam](https://store.steampowered.com/app/1066630) |
 | 永不枯萎的世界与终焉之花 | <img src="./img/M.jpg" width="100"> | `e5795befd53298598760c7dd66289968` | [steam](https://store.steampowered.com/app/3410630) |
 | NUKITASHI | <img src="./img/M.jpg" width="100"> | `bb8a3182f7824c97a4bf4c14d4e3c696` | [steam](https://store.steampowered.com/app/2399220) |
 | NUKITASHI2 | <img src="./img/M.jpg" width="100"> | `bfb430c25628a724adbe4abffc1b1fd2` | [steam](https://store.steampowered.com/app/2614070) |
@@ -208,6 +208,35 @@
 | 与我恋爱的废柴小恶魔FD | <img src="./img/M.jpg" width="100"> | `16d3b9956d77bc86d0f2921b5cb8a952` | [steam](https://store.steampowered.com/app/) |
 | 与我恋爱的废柴小恶魔 - 18+ Adult DLC.part5.rar |
 | 与我恋爱的废柴小恶魔FD | <img src="./img/M.jpg" width="100"> | `e4d85a289ed538e482eb1b0cbd5e00a2` | [steam](https://store.steampowered.com/app/) |
-
+| steamextradlc.rar |
+| Wagamama High Spec | <img src="./img/M.jpg" width="100"> | `暂无` | [steam](https://store.steampowered.com/app/) |
+| HoshiMemo EH r18 patch.rar.rar |
+| Hoshizora no Memoria -Eternal Heart- HD | <img src="./img/M.jpg" width="100"> | `暂无` | [steam](https://store.steampowered.com/app/) |
+| The Witch's Love Diary (Adult DLC).rar |
+| The Witch's Love Diary | <img src="./img/M.jpg" width="100"> | `暂无` | [steam](https://store.steampowered.com/app/) |
+| Nanairo_r18_DLC.zip |
+| Nanairo Reincarnation | <img src="./img/M.jpg" width="100"> | `暂无` | [steam](https://store.steampowered.com/app/) |
+| Raspberry Cube R18 DLC.zip |
+| Raspberry Cube | <img src="./img/M.jpg" width="100"> | `暂无` | [steam](https://store.steampowered.com/app/) |
+| A Clockwork Ley-Line 3 R18 DLC.exe |
+| A Clockwork Ley-Line: Flowers Falling in the Morning Mist | <img src="./img/M.jpg" width="100"> | `暂无` | [steam](https://store.steampowered.com/app/) |
+| LeyLine2 r18 patch.exe |
+| A Clockwork Ley-Line: Daybreak of Remnants Shadow | <img src="./img/M.jpg" width="100"> | `暂无` | [steam](https://store.steampowered.com/app/) |
+| LeyLine r18 patch.rar |
+| A Clockwork Ley-Line: The Borderline of Dusk | <img src="./img/M.jpg" width="100"> | `暂无` | [steam](https://store.steampowered.com/app/) |
+| aoitori-r18-patch-v1.04.zip |
+| 青鸟 | <img src="./img/M.jpg" width="100"> | `47d6c1c7d05c253a2f1ce1204a53258c` | [steam](https://store.steampowered.com/app/2741260) |
+| fureraba_steam_uncensor_patch.zip |
+| Fureraba ~ Friend to Lover ~ | <img src="./img/M.jpg" width="100"> | `9bb8b7d7141c8cca8f033440586bce42` | [steam](https://store.steampowered.com/app/822760) |
+| futamata-renai-cn-r18-patch.zip |
+| 恋爱成双 | <img src="./img/M.jpg" width="100"> | `ae5238702c4e0473da420a34ceec0ee4` | [steam](https://store.steampowered.com/app/3113990) |
+| hgb_r18_patch.zip |
+| Hello, Goodbye | <img src="./img/M.jpg" width="100"> | `85de1143624ad0e9488361964db2b546` | [steam](https://store.steampowered.com/app/1009460) |
+| iroseka_hd_en_r18_dlc_release.zip |
+| 五彩斑斓的世界 | <img src="./img/M.jpg" width="100"> | `8169e6ea94b079cd2f8c03212da3a4c9` | [steam](https://store.steampowered.com/app/2591380) |
+| onigyu-patch-cn-r18-r1.01.zip |
+| 妹抱 | <img src="./img/M.jpg" width="100"> | `3970b27c186f9151a19f26d6c71c8157` | [steam](https://store.steampowered.com/app/3155290) |
+| renairoyale_r18dlc.7z |
+| Renai X Royale - Love's a Battle | <img src="./img/M.jpg" width="100"> | `6a748aef6605acc0dbeb7e88a85677b8` | [steam](https://store.steampowered.com/app/2122430) |
 
 </details>
