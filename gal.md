@@ -152,6 +152,26 @@
 | 五色浮影（2022.04.23） | <img src="./img/M.jpg" width="100"> | `312c3c971123e2086a99d6170b5fbe76` | [HF](https://store.hikarifield.co.jp/) |
 | cross_concerto_steam_patch.7z |
 | 交汇协奏曲（2022.09.23） | <img src="./img/M.jpg" width="100"> | `f17d5f2983c3abe125fe1519c95405a3` | [HF](https://store.hikarifield.co.jp/) |
+| sothewitch_steam_patch.7z |
+| 魔女的夜宴（2023.08.12） | <img src="./img/M.jpg" width="100"> | `b73fbf79653a1dd9affa9cfc6925b343` | [HF](https://store.hikarifield.co.jp/) |
+| sickly_days_steam_patch_uncensored.7z |
+| 病弱（2026.06.26） | <img src="./img/M.jpg" width="100"> | `e89706a44d01ebc978c4955a14e4a124` | [HF](https://store.hikarifield.co.jp/) |
+| patch_append2_uncensored.7z |
+| 病弱append2 | <img src="./img/M.jpg" width="100"> | `ce86dc2e07d2a29aa32925cd8835e4a5` | [HF](https://store.hikarifield.co.jp/) |
+| patch_append3_4_uncensored.7z |
+| 病弱append3_4 | <img src="./img/M.jpg" width="100"> | `104bba743cc8c69dfb32075d46271f5c` | [HF](https://store.hikarifield.co.jp/) |
+| patch_append5_uncensored.7z |
+| 病弱append5 | <img src="./img/M.jpg" width="100"> | `1659f1da9e2f58c1fa834dde0f279b64` | [HF](https://store.hikarifield.co.jp/) |
+| kinkoigt_r18dlc.7z |
+| 金辉恋曲四重奏GT | <img src="./img/M.jpg" width="100"> | `00c71f104b03b7d0a9b5cdbb28e9598d` | [HF](https://store.hikarifield.co.jp/) |
+| futureradio_r18_patch.zip |
+| 未来广播与人工鸽 | <img src="./img/M.jpg" width="100"> | `fdc7b5aacfbbfc057a18f5fccc604dc6` | [HF](https://store.hikarifield.co.jp/) |
+| senrenbanka_r18patch.7z |
+| 千恋*万花 | <img src="./img/M.jpg" width="100"> | `a9dbef98083775741d991a03c8f39328` | [HF](https://store.hikarifield.co.jp/) |
+| riddlejoker_r18dlc.7z |
+| 谜语小丑 | <img src="./img/M.jpg" width="100"> | `61b6a8a416dd87e8727e6a77ee3217b9` | [HF](https://store.hikarifield.co.jp/) |
+| dracuriot_r18_patch_0227.zip |
+| DRACU-RIOT! | <img src="./img/M.jpg" width="100"> | `5136c84bc8f6e05cd5b1f58dbd637cf3` | [HF](https://store.hikarifield.co.jp/) |
 
 </details>
 
