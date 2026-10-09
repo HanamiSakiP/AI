@@ -30,6 +30,6 @@ android 使用 termux
 
 来听歌
 
-[restore](./img/1-happylife.mp4 ':include')
+[restore](assets/docs/images/1-happylife.mp4 ':include')
 
 </details>

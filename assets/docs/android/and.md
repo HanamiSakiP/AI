@@ -6,7 +6,7 @@
 > 1. 关于本机  -> 快速点击版本号   -> 进入到开发者模式
 > 2. 进入开发者模式,下拉找到OEM解锁和usb调试,都打开.
 > 3.关机,同时按住电源和音量减弱按钮几秒钟,启动Bootloader界面.然后手机 usb 连接电脑.
-> [![](../img/wr2.jpg)](https://www.google.com/chrome/ "推荐chrome浏览器")
+> [![](../../../assets/docs/images/wr2.jpg)](https://www.google.com/chrome/ "推荐chrome浏览器")
 > * 此为 chrome官网
 > ### web安装
 > * [grapheneos-web-install](https://grapheneos.org/install/web#prerequisites)
