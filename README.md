@@ -1,11 +1,19 @@
-# 快速定位
+<div align="center">
+  <h1 align="center">
+    <a href="/luJTwX54bBjJ7R1f5lkd7gQ" title="关注塔菲喵">
+      <img src="assets/docs/images/M.jpg" width="200" alt="">
+    </a>
+    <br/>
+    Vivo50
+  </h1>
+</div>
 
-[![](assets/docs/images/127521407_p0.jpg)](/luJTwX54bBjJ7R1f5lkd7gQ "关注塔菲喵")
+## 简介
 
 * start
-  * [1. tool](bash/debian.md)
-  * [2. go AND pip](bash/go.md)
-  * [3. WebDAV](bash/webdav.md)
+  * [1. tool](assets/docs/AI/Linux/debian.md)
+  * [2. go AND pip](assets/docs/AI/Linux/go.md)
+  * [3. WebDAV](assets/docs/AI/Linux/webdav.md)
 
 <details>
 <summary></summary>
