@@ -1,6 +1,6 @@
 # 快速定位
 
-[![](./img/127521407_p0.jpg)](/luJTwX54bBjJ7R1f5lkd7gQ "关注塔菲喵")
+[![](assets/docs/images/127521407_p0.jpg)](/luJTwX54bBjJ7R1f5lkd7gQ "关注塔菲喵")
 
 * start
   * [1. tool](bash/debian.md)
