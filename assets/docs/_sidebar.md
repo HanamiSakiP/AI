@@ -15,7 +15,7 @@
   * [10. eino-Tool](assets/docs/AI/eino/eino-Tool.md)
   * [11. eino-Document](assets/docs/AI/eino/eino-Document.md)
   * [12. eino-编排](assets/docs/AI/eino/eino-编排.md)
-* bash
+* Linux
   * [1. tool](assets/docs/bash/debian.md)
   * [2. fcitx5 输入法](assets/docs/bash/fcitx5.md)
   * [3. go AND pip](assets/docs/bash/go.md)
@@ -39,27 +39,5 @@
   * [3. vue组件篇](assets/docs/vue/vue-3.md)
   * [4. vue路由篇](assets/docs/vue/vue-4.md)
   * [5. vue的ElementPlus 组件库](assets/docs/vue/vue-5.md)
-* network
-  * [1. cisco-ensp](network/ensp.md)
-  * [2. Wireshark](network/Wireshark.md)
-  * [2. 逆向app](network/2.md)
-  * [3. 信息收集](network/3.md)
-  * [4. 漏洞分析](network/4.md)
-  * [5. web程序](network/5.md)
-  * [6. 漏洞利用工具](network/6.md)
-  * [7. 权限维持](network/7.md)
-  * [8. 密码攻击](network/8.md) 
-  * [8. 无线攻击](network/88.md) 
-  * [9. 嗅探](network/9.md) 
-* internet
-  * [1. Computer](internet/Computer.md)
-  * [2. windows](internet/windows.md)
-  * [3. Visio-CAD](internet/CAD.md)
-  * [4. C语言](internet/C.md)
-  * [5. 数据结构](internet/数据结构.md)
-  * [6. 计算机操作系统](internet/计算机操作系统.md)
-  * [7. 计算机网络](internet/计算机网络.md)
-  * [8. 算法](internet/算法.md)
-  * [9. 密码学](internet/密码学.md)
 * Android
   * [1. Android](/assets/docs/android/and.md)
