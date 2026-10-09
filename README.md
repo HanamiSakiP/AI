@@ -4,13 +4,17 @@
       <img src="assets/docs/images/M.jpg" width="200" alt="">
     </a>
     <br/>
-    Vivo50
+    CrazyThursdayVivo50
   </h1>
 </div>
 
 ## 简介
 
 * start
+```bash
+docsify serve .
+```
+
   * [1. tool](assets/docs/AI/Linux/debian.md)
   * [2. go AND pip](assets/docs/AI/Linux/go.md)
   * [3. WebDAV](assets/docs/AI/Linux/webdav.md)
