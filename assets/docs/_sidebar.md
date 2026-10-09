@@ -1,7 +1,7 @@
 <!-- _sidebar.md -->
 
 * AI-adk
-  * [gal](/assets/docs/gal.md)
+  * [gal](/assets/docs/test/gal.md)
   * [1. adk_agent](assets/docs/AI/adk_agent/adk_agnet.md)
   * [2. adk_MAS](assets/docs/AI/adk_agent/adk-MAS.md)
   * [3. adk_MCP](assets/docs/AI/adk_agent/adk-MCP.md)
@@ -16,15 +16,15 @@
   * [11. eino-Document](assets/docs/AI/eino/eino-Document.md)
   * [12. eino-编排](assets/docs/AI/eino/eino-编排.md)
 * Linux
-  * [1. tool](assets/docs/bash/debian.md)
-  * [2. fcitx5 输入法](assets/docs/bash/fcitx5.md)
-  * [3. go AND pip](assets/docs/bash/go.md)
-  * [4. WebDAV](assets/docs/bash/webdav.md)
-  * [5. go-gin-grom](assets/docs/bash/go-2.md)
-  * [6. mysql-redis](assets/docs/bash/MariaDB.md)
-  * [7. RPC-gRPC](assets/docs/bash/RPC.md)
-  * [8. ParrotOS](assets/docs/bash/ParrotOS.md)
-  * [9. Qubes-OS](assets/docs/bash/Qubes-OS.md)
+  * [1. tool](assets/docs/Linux/debian.md)
+  * [2. fcitx5 输入法](assets/docs/Linux/fcitx5.md)
+  * [3. go AND pip](assets/docs/Linux/go.md)
+  * [4. WebDAV](assets/docs/Linux/webdav.md)
+  * [5. go-gin-grom](assets/docs/Linux/go-2.md)
+  * [6. mysql-redis](assets/docs/Linux/MariaDB.md)
+  * [7. RPC-gRPC](assets/docs/Linux/RPC.md)
+  * [8. ParrotOS](assets/docs/Linux/ParrotOS.md)
+  * [9. Qubes-OS](assets/docs/Linux/Qubes-OS.md)
 * docker
   * [1. debian及docker常用命令](/assets/docs/docker/debian_docker.md)
   * [2. docker储存空间转移](/assets/docs/docker/docker磁盘空间不足解决办法.md)
@@ -40,4 +40,4 @@
   * [4. vue路由篇](assets/docs/vue/vue-4.md)
   * [5. vue的ElementPlus 组件库](assets/docs/vue/vue-5.md)
 * Android
-  * [1. Android](/assets/docs/android/and.md)
+  * [1. Android](/assets/docs/Android/and.md)
