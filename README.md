@@ -13,18 +13,22 @@ CrazyThursdayVivo50
 * start
 ```bash
 mkdir -p ~/.local/share/devmgr/backups
-cd ~/.local/share/devmgr/backups
-git clone https://github.com/HanamiSakiP/AI.git ~/.local/share/devmgr
+cd ~/.local/share/devmgr
+git clone https://github.com/HanamiSakiP/AI.git
 ```
 ```bash
 cp -r ~/.local/share/devmgr/AI/dev/backups ~/.local/share/devmgr/
 mkdir -p ~/.local/bin
 install -m755 ~/.local/share/devmgr/AI/dev/dev ~/.local/bin
+install -m755 ~/.local/share/devmgr/AI/dev/dev-tool ~/.local/bin
+install -m755 ~/.local/share/devmgr/AI/dev/tool ~/.local/bin
 install -m755 ~/.local/share/devmgr/AI/dev/undev ~/.local/bin
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 ls ~/.local/bin
 dev restore # install
+dev-tool
+tool
 source ~/.bashrc
 ls ~/.local/share/devmgr/backups
 ```
@@ -36,7 +40,7 @@ docker
 ```bash
 docker run -d --name test-debian debian:latest sleep infinity
 docker exec -it test-debian mkdir -p /root/.local/share/devmgr/AI
-docker cp ~/.local/share/devmgr/backups/AI test-debian:/root/.local/share/devmgr/AI
+docker cp ~/.local/share/devmgr/AI test-debian:/root/.local/share/devmgr/AI
 docker exec -it test-debian /bin/bash
 # 强制删除容器
 # docker rm -f test-debian
@@ -45,7 +49,7 @@ podman
 ```bash
 podman run -d --name test-debian debian:latest sleep infinity
 podman exec -it test-debian mkdir -p /root/.local/share/devmgr/devmgr/AI
-podman cp ~/.local/share/devmgr/backups/AI test-debian:/root/.local/share/devmgr/AI
+podman cp ~/.local/share/devmgr/AI test-debian:/root/.local/share/devmgr/AI
 podman exec -it test-debian /bin/bash
 # 强制删除容器
 # podman rm -f test-debian
