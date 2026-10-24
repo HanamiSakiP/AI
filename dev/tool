@@ -4,7 +4,14 @@
 #
 # 放置于 ~/.local/bin/ 并赋予可执行权限即可作为命令使用
 #
-set -u
+# 希望退出 tool 后 shell 仍停在「快速找到 git 项目」所选目录时：
+#   方式A（推荐）：source tool   （或 . tool）
+#   方式B：直接执行 tool，选中项目后按提示进入新子 shell，exit 后回原 shell
+#
+# 仅在直接执行时开启严格模式，避免 source 时污染调用方 shell
+if [[ "${BASH_SOURCE[0]:-$0}" == "$0" ]]; then
+  set -u
+fi
 
 # ---------------- 颜色 ----------------
 if [[ -t 1 ]]; then
@@ -16,6 +23,8 @@ fi
 
 have() { command -v "$1" >/dev/null 2>&1; }
 
+is_sourced() { [[ "${BASH_SOURCE[0]:-$0}" != "$0" ]]; }
+
 hr() { printf '%s\n' "${CYAN}------------------------------------------------------------${NC}"; }
 
 run() {
@@ -24,6 +33,18 @@ run() {
 }
 
 lower() { printf '%s' "$1" | tr '[:upper:]' '[:lower:]'; }
+
+# 把开头是 ~ 的路径展开为 $HOME（read 不会自动展开）
+expand_tilde() {
+  local p="$1"
+  if [[ "$p" == "~" ]]; then
+    printf '%s' "$HOME"
+  elif [[ "$p" == "~/"* ]]; then
+    printf '%s' "${HOME}/${p#\~/}"
+  else
+    printf '%s' "$p"
+  fi
+}
 
 # ---------------- 安装提示 ----------------
 install_hint() {
@@ -34,6 +55,9 @@ install_hint() {
     claude)   echo "  claude   : npm i -g @anthropic-ai/claude-code" ;;
     opencode) echo "  opencode : 参考 https://opencode.ai/docs 安装" ;;
     codex)    echo "  codex    : npm i -g @openai/codex" ;;
+    fzf)      echo "  fzf      : sudo apt install fzf / sudo dnf install fzf / brew install fzf" ;;
+    rclone)   echo "  rclone   : curl https://rclone.org/install.sh | sudo bash / brew install rclone / sudo apt install rclone" ;;
+    restic)   echo "  restic   : sudo apt install restic / sudo dnf install restic / brew install restic（或 https://github.com/restic/restic/releases 下载静态二进制）" ;;
     dsh)      echo "  dsh      : npx @deepseek-ai/dsh web  或  npm i -g @deepseek-ai/dsh" ;;
     rea)      echo "  rea      : npx rea-agents setup  或  npm i -g rea-agents" ;;
     *)        echo "  $1       : 请自行安装" ;;
@@ -57,7 +81,7 @@ need_tools() {
 
 # ---------------- 启动前自检 ----------------
 preflight_check() {
-  local tools=(git gh glab claude opencode codex)
+  local tools=(git gh glab claude opencode codex fzf rclone restic)
   local missing=() t
   for t in "${tools[@]}"; do
     have "$t" || missing+=("$t")
@@ -183,6 +207,17 @@ ai_login_help() {
 EOF
 }
 
+# ---------------- 2 + 3 合并：检查状态并可选查看指引 ----------------
+check_ai_auth_and_help() {
+  check_ai_auth
+  echo
+  local ans
+  read -r -p "是否查看三大 AI-CLI 登录指引? [Y/n]: " ans
+  if [[ ! "$ans" =~ ^[Nn]$ ]]; then
+    ai_login_help
+  fi
+}
+
 # ---------------- 4. Git 交互式操作 ----------------
 
 do_git_init() {
@@ -290,7 +325,6 @@ do_gh_create_push() {
   run gh repo create "$name" "--$vis" --source=. --push
 }
 
-# 情况3 —— 4) 使用 git clone 下载远程仓库到本地
 do_git_clone() {
   need_tools git || return 1
   local url dir
@@ -304,7 +338,6 @@ do_git_clone() {
   fi
 }
 
-# 情况3 —— 4) 使用 gh repo clone 下载远程仓库到本地
 do_gh_repo_clone() {
   need_tools git gh || return 1
   local repo dir
@@ -316,6 +349,27 @@ do_gh_repo_clone() {
   else
     run gh repo clone "$repo"
   fi
+}
+
+do_git_update() {
+  need_tools git || return 1
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "${RED}当前目录不是 git 仓库${NC}"
+    return 1
+  fi
+
+  echo "${CYAN}--- 当前分支 ---${NC}"
+  git branch -vv 2>&1 || true
+
+  echo
+  echo "${CYAN}>>> git pull${NC}"
+  run git pull
+
+  echo
+  echo "${CYAN}>>> git submodule update --init --recursive${NC}"
+  run git submodule update --init --recursive
+
+  echo "${GREEN}✓ 更新完成${NC}"
 }
 
 git_menu() {
@@ -340,6 +394,12 @@ git_menu() {
     echo "   7) 使用 git clone 下载       (git clone <url>)"
     echo "   8) 使用 gh repo clone 下载   (gh repo clone owner/repo)"
     echo
+    echo "  ${GREEN}通用：更新已有仓库${NC}"
+    echo "   9) 更新 git 项目             (git pull + 子模块递归更新)"
+    echo
+    echo "   ${RED}10) 快速创建 git 项目并跳转  (~/.local/share/devmgr/<name>)${NC}"
+    echo "   ${RED}11) gh 查看 / 下载 Release${NC}"
+    echo
     echo "   0) 返回上级"
     read -r -p "请选择: " c
     case "$c" in
@@ -351,6 +411,9 @@ git_menu() {
       6) do_gh_create_push ;;
       7) do_git_clone ;;
       8) do_gh_repo_clone ;;
+      9) do_git_update ;;
+      10) do_create_git_project ;;
+      11) do_gh_release_menu ;;
       0|q|Q) return 0 ;;
       *) echo "${RED}无效选项${NC}" ;;
     esac
@@ -458,6 +521,579 @@ rea_intro() {
   echo "${RED}文档：https://rea.tools/  |  https://github.com/morluto/rea${NC}"
 }
 
+# ---------------- 5. AI 工具介绍（合并 dsh + rea-agents） ----------------
+ai_tools_intro() {
+  while true; do
+    echo
+    hr
+    echo "${BOLD}AI 工具介绍${NC}"
+    hr
+    echo "  1) @deepseek-ai/dsh 使用介绍"
+    echo "  2) rea-agents 使用介绍"
+    echo "  0) 返回上级"
+    read -r -p "请选择: " c
+    case "$c" in
+      1) dsh_intro ;;
+      2) rea_intro ;;
+      0|q|Q) return 0 ;;
+      *) echo "${RED}无效选项${NC}" ;;
+    esac
+    echo
+    read -r -p "按回车继续..." _
+  done
+}
+
+# ---------------- 6. 快速找到所有 git 项目 ----------------
+do_find_git_projects() {
+  need_tools find fzf || return 1
+  local root dir ans
+  read -r -p "搜索根目录（留空则搜索全部目录 /，可能较慢）: " root
+  root=${root:-/}
+
+  echo "${CYAN}正在搜索 ${root} 下的 git 项目（要求含 README.md）...${NC}"
+  dir=$(find "$root" -name .git 2>/dev/null \
+    | sed 's|/\.git$||' \
+    | while IFS= read -r d; do
+        [ -f "$d/README.md" ] && echo "$d"
+      done \
+    | sort -u \
+    | fzf --prompt="选择 git 项目 > ")
+
+  if [[ -z "$dir" ]]; then
+    echo "${YELLOW}未选择或未找到符合条件的项目（需要含 README.md）${NC}"
+    return 0
+  fi
+
+  if is_sourced; then
+    cd "$dir" || return 1
+    echo "${GREEN}✓ 当前 shell 已切换到: $(pwd)${NC}"
+    read -r -p "是否进入 Git 交互式操作菜单? [y/N]: " ans
+    if [[ "$ans" =~ ^[Yy]$ ]]; then
+      git_menu
+    fi
+  else
+    echo "${CYAN}目标目录: $dir${NC}"
+    read -r -p "是否进入该目录的新 shell?（exit 后回原 shell）[Y/n]: " ans
+    if [[ ! "$ans" =~ ^[Nn]$ ]]; then
+      cd "$dir" || return 1
+      echo "${GREEN}✓ 进入新 shell: $(pwd)（输入 exit 返回原 shell）${NC}"
+      exec "${SHELL:-bash}" -i
+    fi
+    echo "${YELLOW}提示：直接执行脚本无法改变父 shell 的目录。${NC}"
+    echo "${YELLOW}  手动切换：cd $(printf '%q' "$dir")${NC}"
+    echo "${YELLOW}  或改用：  source $0   （让 tool 里的 cd 直接生效）${NC}"
+  fi
+}
+
+# ---------------- 7. 快速创建 git 项目并跳转 ----------------
+do_create_git_project() {
+  need_tools git || return 1
+  local base="${HOME}/.local/share/devmgr"
+  local name dir ans
+
+  read -r -p "项目名（默认 demo）: " name
+  name=${name:-demo}
+
+  if [[ "$name" == */* || "$name" == "." || "$name" == ".." ]]; then
+    echo "${RED}项目名不能包含 '/' 或为 . / ..${NC}"
+    return 1
+  fi
+
+  dir="${base}/${name}"
+  mkdir -p "$dir" || return 1
+  cd "$dir" || return 1
+
+  if [[ -d .git ]]; then
+    echo "${YELLOW}已是 git 仓库，跳过 git init${NC}"
+  else
+    run git init
+  fi
+
+  if [[ -f README.md ]]; then
+    echo "${YELLOW}README.md 已存在，跳过创建${NC}"
+  else
+    echo > README.md
+    echo "${GREEN}✓ 已创建 README.md${NC}"
+  fi
+
+  echo "${GREEN}✓ 项目目录: $(pwd)${NC}"
+
+  if is_sourced; then
+    read -r -p "是否进入 Git 交互式操作菜单? [y/N]: " ans
+    if [[ "$ans" =~ ^[Yy]$ ]]; then
+      git_menu
+    fi
+  else
+    read -r -p "是否进入该目录的新 shell?（exit 后回原 shell）[Y/n]: " ans
+    if [[ ! "$ans" =~ ^[Nn]$ ]]; then
+      echo "${GREEN}✓ 进入新 shell: $(pwd)（输入 exit 返回原 shell）${NC}"
+      exec "${SHELL:-bash}" -i
+    fi
+    echo "${YELLOW}提示：直接执行脚本无法改变父 shell 的目录。${NC}"
+    echo "${YELLOW}  手动切换：cd $(printf '%q' "$dir")${NC}"
+    echo "${YELLOW}  或改用：  source $0   （让 tool 里的 cd 直接生效）${NC}"
+  fi
+}
+
+# ---------------- 8. gh 仓库 / 星标 / Release 管理 ----------------
+
+# 询问目标仓库（优先当前仓库），结果写到 stdout
+ask_gh_repo() {
+  local repo="" input
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    repo=$(gh repo view --json nameWithOwner -q .nameWithOwner 2>/dev/null || true)
+  fi
+  if [[ -n "$repo" ]]; then
+    read -r -p "目标仓库 [默认 ${repo}，回车沿用当前仓库]: " input
+    [[ -n "$input" ]] && repo="$input"
+  else
+    read -r -p "目标仓库（owner/repo，必填）: " input
+    repo="$input"
+  fi
+  printf '%s' "$repo"
+}
+
+# 查看自己（或指定用户）的仓库列表
+do_gh_repo_list() {
+  need_tools gh || return 1
+  local user limit
+  local -a cmd=(gh repo list)
+  read -r -p "用户名（留空 = 你自己）: " user
+  read -r -p "数量上限（0 = 全部，默认 30）: " limit
+  limit=${limit:-30}
+  [[ -n "$user" ]] && cmd+=("$user")
+  cmd+=(--limit "$limit")
+  echo "${CYAN}>>> ${cmd[*]}${NC}"
+  "${cmd[@]}" || true
+}
+
+# 查看已星标集合（GitHub Lists）名称
+do_gh_starred_lists() {
+  need_tools gh || return 1
+  local q='{ viewer { lists(first: 100) { nodes { name } } } }'
+  local jq='.data.viewer.lists.nodes[].name'
+  echo "${CYAN}>>> gh api graphql -f query='${q}' --jq '${jq}'${NC}"
+  gh api graphql -f query="$q" --jq "$jq" || true
+}
+
+# 查看某个星标集合里的项目
+do_gh_starred_list_items() {
+  need_tools gh || return 1
+  local list jq
+  read -r -p "星标集合名称（如 game）: " list
+  [[ -z "$list" ]] && return 0
+
+  local q='
+query {
+  viewer {
+    lists(first: 100) {
+      nodes {
+        name
+        items(first: 100) {
+          nodes {
+            ... on Repository {
+              nameWithOwner
+            }
+          }
+        }
+      }
+    }
+  }
+}'
+  jq=".data.viewer.lists.nodes[] | select(.name == \"${list}\") | .items.nodes[].nameWithOwner"
+  echo "${CYAN}>>> gh api graphql -f query='{...}' --jq \"${jq}\"${NC}"
+  gh api graphql -f query="$q" --jq "$jq" || true
+}
+
+# --- Release 管理 ---
+
+do_gh_release_list() {
+  need_tools git gh || return 1
+  local repo
+  repo=$(ask_gh_repo)
+  [[ -z "$repo" ]] && return 1
+  local cmd=(gh release list -R "$repo")
+  echo "${CYAN}>>> ${cmd[*]}${NC}"
+  "${cmd[@]}" || true
+}
+
+do_gh_release_view() {
+  need_tools git gh || return 1
+  local repo tag ans cmd
+  repo=$(ask_gh_repo)
+  [[ -z "$repo" ]] && return 1
+  read -r -p "Tag（留空 = 最新 Release）: " tag
+  cmd=(gh release view)
+  [[ -n "$tag" ]] && cmd+=("$tag")
+  cmd+=(-R "$repo")
+  echo "${CYAN}>>> ${cmd[*]}${NC}"
+  "${cmd[@]}" || true
+
+  read -r -p "是否在浏览器中打开? [y/N]: " ans
+  if [[ "$ans" =~ ^[Yy]$ ]]; then
+    cmd+=(--web)
+    echo "${CYAN}>>> ${cmd[*]}${NC}"
+    "${cmd[@]}" || true
+  fi
+}
+
+do_gh_release_download() {
+  need_tools git gh || return 1
+  local repo tag dir clobber use_pattern pattern cmd dl_dir view_tag assets_raw asset
+  local -a expected_assets=()
+  repo=$(ask_gh_repo)
+  [[ -z "$repo" ]] && return 1
+
+  read -r -p "Tag（留空 = 最新 Release）: " tag
+  read -r -p "是否按文件名筛选资产（--pattern）? [y/N]: " use_pattern
+  pattern=""
+  if [[ "$use_pattern" =~ ^[Yy]$ ]]; then
+    read -r -p "文件名 glob 模式（如 *.tar.gz，直接回车 = 全部资产）: " pattern
+  fi
+  read -r -p "下载目录（默认当前目录）: " dir
+  read -r -p "覆盖已存在文件（--clobber）? [y/N]: " clobber
+
+  cmd=(gh release download)
+  [[ -n "$tag" ]] && cmd+=("$tag")
+
+  if [[ -n "$pattern" ]]; then
+    cmd+=(--pattern "$pattern")
+  elif [[ -z "$tag" ]]; then
+    cmd+=(--pattern '*')
+    echo "${YELLOW}提示：下载最新 Release 时 gh 要求必须指定 --pattern，已自动使用 '*'（匹配全部资产）${NC}"
+  fi
+
+  [[ -n "$dir" ]] && cmd+=(--dir "$dir")
+  [[ "$clobber" =~ ^[Yy]$ ]] && cmd+=(--clobber)
+  cmd+=(-R "$repo")
+
+  dl_dir="${dir:-.}"
+  view_tag="$tag"
+  if [[ -z "$view_tag" ]]; then
+    view_tag=$(gh release view -R "$repo" --json tagName -q .tagName 2>/dev/null || true)
+  fi
+  if [[ -n "$view_tag" ]]; then
+    assets_raw=$(gh release view "$view_tag" -R "$repo" --json assets -q '.assets[].name' 2>/dev/null || true)
+    if [[ -n "$assets_raw" ]]; then
+      while IFS= read -r asset; do
+        [[ -z "$asset" ]] && continue
+        if [[ -n "$pattern" ]]; then
+          # shellcheck disable=SC2053
+          if [[ "$asset" == $pattern ]]; then
+            expected_assets+=("$asset")
+          fi
+        else
+          expected_assets+=("$asset")
+        fi
+      done <<< "$assets_raw"
+    fi
+  fi
+
+  echo "${CYAN}>>> ${cmd[*]}${NC}"
+  if "${cmd[@]}"; then
+    echo
+    echo "${GREEN}✓✓✓ 下载成功 ✓✓✓${NC}"
+    local abs_dir
+    abs_dir=$(cd "$dl_dir" 2>/dev/null && pwd) || abs_dir="$dl_dir"
+    echo "下载目录: ${abs_dir}"
+    echo "本次下载文件:"
+    local found_any=0
+    if (( ${#expected_assets[@]} > 0 )); then
+      local f line
+      for asset in "${expected_assets[@]}"; do
+        f="${dl_dir}/${asset}"
+        if [[ -f "$f" ]]; then
+          while IFS= read -r line; do
+            printf '%s%s%s\n' "${RED}" "$line" "${NC}"
+          done < <(ls -lh "$f")
+          found_any=1
+        fi
+      done
+    fi
+    if (( found_any == 0 )); then
+      if [[ -n "$pattern" ]]; then
+        while IFS= read -r f; do
+          [[ -z "$f" ]] && continue
+          while IFS= read -r line; do
+            printf '%s%s%s\n' "${RED}" "$line" "${NC}"
+          done < <(ls -lh "$f")
+        done < <(find "$dl_dir" -maxdepth 1 -type f -name "$pattern" 2>/dev/null)
+      else
+        while IFS= read -r line; do
+          printf '%s%s%s\n' "${RED}" "$line" "${NC}"
+        done < <(ls -lh "$dl_dir" 2>/dev/null)
+      fi
+    fi
+  else
+    echo
+    echo "${RED}✗✗✗ 下载失败！${NC}"
+    echo "${YELLOW}请检查：Tag 是否存在 / pattern 是否匹配 / 网络与权限${NC}"
+  fi
+}
+
+do_gh_repo_menu() {
+  need_tools git gh || return 1
+  while true; do
+    echo
+    hr
+    echo "${BOLD}gh 仓库 / 星标 / Release 管理${NC}"
+    hr
+    echo "${CYAN}--- 仓库列表 ---${NC}"
+    echo "  1) 查看自己的仓库列表              (gh repo list)"
+    echo "  2) 查看已星标集合（Lists）名称"
+    echo "  3) 查看星标集合内的项目"
+    echo
+    echo "${CYAN}--- Release 管理（需指定仓库）---${NC}"
+    echo "  4) 列出所有 Release"
+    echo "  5) 查看 Release 详情"
+    echo "  6) 下载 Release 资产"
+    echo
+    echo "  0) 返回上级"
+    read -r -p "请选择: " c
+    case "$c" in
+      1) do_gh_repo_list ;;
+      2) do_gh_starred_lists ;;
+      3) do_gh_starred_list_items ;;
+      4) do_gh_release_list ;;
+      5) do_gh_release_view ;;
+      6) do_gh_release_download ;;
+      0|q|Q) return 0 ;;
+      *) echo "${RED}无效选项${NC}" ;;
+    esac
+    echo
+    read -r -p "按回车继续..." _
+  done
+}
+
+# ---------------- 9. rclone 快捷操作 ----------------
+
+rclone_login_help() {
+  hr
+  echo "${BOLD}rclone 登录配置指引${NC}"
+  hr
+  cat <<'EOF'
+【以 Dropbox 为例】
+  1) 运行 rclone config
+  2) 输入 n 新建 remote
+  3) 输入名字（例如 k）
+  4) 选择服务类型 dropbox（输入对应编号或 dropbox）
+  5) client_id、client_secret 直接回车（使用默认）
+  6) 是否编辑高级配置：n
+  7) 是否自动配置（浏览器 OAuth）：y
+  8) 浏览器打开授权页面，登录 Dropbox 并允许授权
+  9) 回到终端确认 y，完成配置
+
+【其它常见服务】
+  Google Drive    → drive
+  OneDrive        → onedrive
+  S3 兼容（R2/B2）→ s3
+  WebDAV（坚果云）→ webdav
+  SFTP            → sftp
+
+【常用命令】
+  rclone listremotes              列出所有 remote
+  rclone ls  <remote>:<path>      列出文件（含大小）
+  rclone lsd <remote>:<path>      仅列目录
+  rclone lsf <remote>:<path>      简洁列表（脚本友好）
+  rclone copy <src> <dst>         复制（不删除目标多余文件）
+  rclone sync <src> <dst>         同步（会删除目标多余文件，危险，务必先 --dry-run）
+EOF
+}
+
+do_rclone_config() {
+  need_tools rclone || return 1
+  run rclone config
+}
+
+do_rclone_listremotes() {
+  need_tools rclone || return 1
+  run rclone listremotes
+}
+
+do_rclone_ls() {
+  need_tools rclone || return 1
+  local remote path mode target
+  read -r -p "remote 名（默认 k）: " remote
+  remote=${remote:-k}
+  read -r -p "路径（默认 backups）: " path
+  path=${path:-backups}
+  read -r -p "模式 [1=ls 文件 2=lsd 仅目录 3=lsf 简洁]（默认 1）: " mode
+
+  target="${remote}:${path}"
+  case "$mode" in
+    2) run rclone lsd "$target" ;;
+    3) run rclone lsf "$target" ;;
+    *) run rclone ls "$target" ;;
+  esac
+}
+
+do_rclone_copy() {
+  need_tools rclone || return 1
+  local src dst
+  read -r -p "源（默认 k:backups）: " src
+  src=${src:-k:backups}
+  read -r -p "目标（默认 ~/.local/share/devmgr/）: " dst
+  dst=${dst:-~/.local/share/devmgr/}
+  dst=$(expand_tilde "$dst")
+  run rclone copy "$src" "$dst" --progress
+}
+
+do_rclone_sync() {
+  need_tools rclone || return 1
+  local src dst ans
+  read -r -p "源（默认 ~/.local/share/devmgr/）: " src
+  src=${src:-~/.local/share/devmgr/}
+  src=$(expand_tilde "$src")
+  read -r -p "目标（默认 k:backups）: " dst
+  dst=${dst:-k:backups}
+  read -r -p "是否执行真实同步（会删除目标多余文件！）[y/N]: " ans
+
+  local cmd=(rclone sync "$src" "$dst" --progress)
+  if [[ ! "$ans" =~ ^[Yy]$ ]]; then
+    cmd+=(--dry-run)
+    echo "${YELLOW}已启用 --dry-run 模拟执行${NC}"
+  fi
+  echo "${CYAN}>>> ${cmd[*]}${NC}"
+  "${cmd[@]}"
+}
+
+# ---------------- restic 快捷操作 ----------------
+# 默认 restic 仓库与默认备份源目录，可通过环境变量覆盖
+RESTIC_REPO="${RESTIC_REPO:-$HOME/.local/share/devmgr/restic}"
+RESTIC_BACKUP_DIR="${RESTIC_BACKUP_DIR:-$HOME/.local/share/devmgr/backups}"
+
+# 每次操作前询问仓库路径，回车使用默认 RESTIC_REPO
+ask_restic_repo() {
+  local repo
+  read -r -p "restic 仓库路径（默认 ${RESTIC_REPO}，回车沿用）: " repo
+  repo=${repo:-$RESTIC_REPO}
+  repo=$(expand_tilde "$repo")
+  printf '%s' "$repo"
+}
+
+do_restic_init() {
+  need_tools restic || return 1
+  local repo
+  repo=$(ask_restic_repo)
+  if [[ -d "$repo" ]]; then
+    echo "${YELLOW}restic 仓库已存在: $repo${NC}"
+    return 0
+  fi
+  run restic -r "$repo" init
+}
+
+do_restic_snapshots() {
+  need_tools restic || return 1
+  local repo
+  repo=$(ask_restic_repo)
+  run restic -r "$repo" snapshots
+}
+
+do_restic_ls() {
+  need_tools restic || return 1
+  local repo id
+  repo=$(ask_restic_repo)
+  read -r -p "快照 ID（留空 = latest）: " id
+  id=${id:-latest}
+  run restic -r "$repo" ls "$id"
+}
+
+do_restic_ls_path() {
+  need_tools restic || return 1
+  local repo id path
+  repo=$(ask_restic_repo)
+  read -r -p "快照 ID（留空 = latest）: " id
+  id=${id:-latest}
+  read -r -p "路径（例如 backups/g，留空 = 全部）: " path
+  if [[ -n "$path" ]]; then
+    run restic -r "$repo" ls "$id" --path "$path"
+  else
+    run restic -r "$repo" ls "$id"
+  fi
+}
+
+do_restic_restore_include() {
+  need_tools restic || return 1
+  local repo id target include
+  repo=$(ask_restic_repo)
+  read -r -p "快照 ID（留空 = latest）: " id
+  id=${id:-latest}
+  read -r -p "恢复目标目录（--target，默认 restore）: " target
+  target=${target:-restore}
+  read -r -p "包含路径（--include，默认 ${RESTIC_BACKUP_DIR}）: " include
+  include=${include:-$RESTIC_BACKUP_DIR}
+  include=$(expand_tilde "$include")
+  run restic -r "$repo" restore "$id" --target "$target" --include "$include"
+}
+
+do_restic_restore_all() {
+  need_tools restic || return 1
+  local repo id target
+  repo=$(ask_restic_repo)
+  read -r -p "快照 ID（留空 = latest）: " id
+  id=${id:-latest}
+  read -r -p "恢复目标目录（--target，默认 restore）: " target
+  target=${target:-restore}
+  run restic -r "$repo" restore "$id" --target "$target"
+}
+
+do_restic_backup() {
+  need_tools restic || return 1
+  local repo path
+  repo=$(ask_restic_repo)
+  read -r -p "要备份的路径（默认 ${RESTIC_BACKUP_DIR}）: " path
+  path=${path:-$RESTIC_BACKUP_DIR}
+  path=$(expand_tilde "$path")
+  run restic -r "$repo" backup "$path"
+}
+
+rclone_restic_menu() {
+  while true; do
+    echo
+    hr
+    echo "${BOLD}rclone / restic 快捷操作${NC}"
+    hr
+    echo "${CYAN}--- rclone ---${NC}"
+    echo "  1) 登录 / 添加 remote 配置   (rclone config)"
+    echo "  2) 查看 rclone 登录配置指引"
+    echo "  ${RED}3) 列出所有已配置 remote     (rclone listremotes)${NC}"
+    echo "  4) 查看 remote 内容（ls/lsd/lsf，默认 k:backups）"
+    echo "  ${RED}5) 从 remote 复制到本地      (rclone copy，默认 k:backups → ~/.local/share/devmgr/)${NC}"
+    echo "  ${RED}6) 从本地同步到 remote       (rclone sync，默认 ~/.local/share/devmgr/ → k:backups，默认 --dry-run)${NC}"
+    echo
+    echo "${CYAN}--- restic（默认仓库: ${RESTIC_REPO}，默认备份源: ${RESTIC_BACKUP_DIR}）---${NC}"
+    echo "  7) 初始化 restic 仓库        (restic init)"
+    echo "  ${RED}8) 查看快照列表              (restic snapshots)${NC}"
+    echo "  ${RED}9) 查看快照内容（全部）      (restic ls ID)${NC}"
+    echo "  10) 查看快照某个内容         (restic ls ID --path ...)"
+    echo "  11) 恢复快照中某个内容到本地 (restic restore latest --target ... --include ...)"
+    echo "  12) 恢复快照中所有文件到本地 (restic restore latest --target ...)"
+    echo "  ${RED}13) 使用 restic 仓库备份     (restic backup ${RESTIC_BACKUP_DIR})${NC}"
+    echo
+    echo "  0) 返回上级"
+    read -r -p "请选择: " c
+    case "$c" in
+      1) do_rclone_config ;;
+      2) rclone_login_help ;;
+      3) do_rclone_listremotes ;;
+      4) do_rclone_ls ;;
+      5) do_rclone_copy ;;
+      6) do_rclone_sync ;;
+      7) do_restic_init ;;
+      8) do_restic_snapshots ;;
+      9) do_restic_ls ;;
+      10) do_restic_ls_path ;;
+      11) do_restic_restore_include ;;
+      12) do_restic_restore_all ;;
+      13) do_restic_backup ;;
+      0|q|Q) return 0 ;;
+      *) echo "${RED}无效选项${NC}" ;;
+    esac
+    echo
+    read -r -p "按回车继续..." _
+  done
+}
+
 # ---------------- 主菜单 ----------------
 main_menu() {
   while true; do
@@ -466,23 +1102,34 @@ main_menu() {
     echo "${BOLD}开发环境工具箱${NC}"
     hr
     echo "${RED}1) 检查 Git 远程仓库登录状态  (gh / glab)${NC}"
-    echo "2) 检查 AI-CLI 登录状态       (claude / opencode / codex)"
-    echo "3) 查看 AI-CLI 登录指引"
-    echo "${RED}4) Git 交互式操作${NC}"
-    echo "5) @deepseek-ai/dsh 使用介绍"
-    echo "6) rea-agents 使用介绍"
-    echo "7) 全部检查（1 + 2）"
+    echo "2) 检查 AI-CLI 登录状态 + 查看登录指引  (claude / opencode / codex)"
+    echo "${RED}3) Git 交互式操作${NC}"
+    echo "4) AI 工具介绍  (dsh / rea-agents)"
+    echo "${RED}5) 快速找到所有 git 项目并跳转  (fzf)${NC}"
+    echo "${RED}6) 快速创建 git 项目并跳转  (~/.local/share/devmgr/<name>)${NC}"
+    echo "${RED}7) gh 仓库列表 / 星标集合 / Release 管理${NC}"
+    echo "${RED}8) rclone / restic 快捷操作  (config / list / copy / sync / snapshots / restore / backup)${NC}"
+    echo "9) 全部检查（1 + 2）"
     echo "0) 退出"
     read -r -p "请选择: " choice
     case "$choice" in
       1) check_git_auth ;;
-      2) check_ai_auth ;;
-      3) ai_login_help ;;
-      4) git_menu ;;
-      5) dsh_intro ;;
-      6) rea_intro ;;
-      7) check_git_auth; echo; check_ai_auth ;;
-      0|q|Q) echo "Bye."; exit 0 ;;
+      2) check_ai_auth_and_help ;;
+      3) git_menu ;;
+      4) ai_tools_intro ;;
+      5) do_find_git_projects ;;
+      6) do_create_git_project ;;
+      7) do_gh_repo_menu ;;
+      8) rclone_restic_menu ;;
+      9) check_git_auth; echo; check_ai_auth ;;
+      0|q|Q)
+        echo "Bye."
+        if is_sourced; then
+          return 0
+        else
+          exit 0
+        fi
+        ;;
       *) echo "${RED}无效选项${NC}" ;;
     esac
   done

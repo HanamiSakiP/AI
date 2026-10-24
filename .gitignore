@@ -1,6 +1,8 @@
 dev/backups/g/*
 dev/backups/nvm/*
 dev/backups/pyenv/*
+dev/backups/git/*
 !dev/backups/g/.gitkeep
 !dev/backups/nvm/.gitkeep
 !dev/backups/pyenv/.gitkeep
+!dev/backups/git/.gitkeep
